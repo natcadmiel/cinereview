@@ -1,0 +1,12 @@
+com\example\movieapp\repositories\UserRepository.class
+com\example\movieapp\models\Filme.class
+com\example\movieapp\controllers\MainController.class
+com\example\movieapp\models\User.class
+com\example\movieapp\services\CustomUserDetailsService.class
+com\example\movieapp\MovieAppApplication.class
+com\example\movieapp\repositories\AvaliacaoRepository.class
+com\example\movieapp\services\ServicoFilme.class
+com\example\movieapp\models\Avaliacao.class
+com\example\movieapp\repositories\FilmeRepository.class
+com\example\movieapp\controllers\AuthController.class
+com\example\movieapp\config\SecurityConfig.class

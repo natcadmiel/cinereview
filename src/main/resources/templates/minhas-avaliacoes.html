@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::content})}">
+<div th:fragment="content">
+    <div class="header-section" style="margin-bottom: 30px;">
+        <h2>Minhas Avaliações</h2>
+        <p style="color: var(--text-muted);">Veja o histórico de todos os filmes que você já avaliou.</p>
+    </div>
+
+    <div th:if="${#lists.isEmpty(avaliacoesComFilme)}" style="text-align: center; margin-top: 50px;">
+        <p style="font-size: 1.2rem; color: var(--text-muted);">Você ainda não avaliou nenhum filme.</p>
+        <a th:href="@{/}" class="btn-primary"
+            style="display: inline-block; margin-top: 20px; text-decoration: none;">Explorar Filmes</a>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(avaliacoesComFilme)}" class="reviews-list">
+        <div th:each="item : ${avaliacoesComFilme}" class="review-card"
+            style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; padding: 20px; background-color: #1a1a1a; border-radius: 8px;">
+            <a th:href="@{/filme/{id}(id=${item.filme.id})}" style="flex-shrink: 0;">
+                <img th:if="${item.filme.imagem != null && !item.filme.imagem.isEmpty()}" th:src="${item.filme.imagem}"
+                    th:alt="${item.filme.titulo}"
+                    style="width: 80px; height: 120px; border-radius: 4px; object-fit: cover;">
+            </a>
+            <div style="flex-grow: 1;">
+                <h3 style="margin-top: 0; margin-bottom: 5px;">
+                    <a th:href="@{/filme/{id}(id=${item.filme.id})}"
+                        style="color: var(--primary-color); text-decoration: none;"
+                        th:text="${item.filme.titulo}">Título</a>
+                </h3>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <span class="star-rating" style="color: gold;">
+                        <span th:each="i : ${#numbers.sequence(1, item.avaliacao.nota)}">★</span><span
+                            th:if="${item.avaliacao.nota < 5}" style="color: #444;"
+                            th:each="i : ${#numbers.sequence(1, 5 - item.avaliacao.nota)}">★</span>
+                    </span>
+                    <span th:text="${item.avaliacao.nota} + '/5'"
+                        style="color: var(--text-muted); font-size: 0.9rem;"></span>
+                </div>
+                <p th:text="${item.avaliacao.comentario}"
+                    style="margin: 0; color: #ddd; line-height: 1.5; margin-bottom: 15px;">Comentário</p>
+
+                <div style="display: flex; gap: 10px;">
+                    <a th:href="@{/avaliacao/editar/{id}(id=${item.avaliacao.id})}" class="btn-edit"
+                        style="display: flex; align-items: center; justify-content: center; width: 100px; height: 36px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; box-sizing: border-box;">Editar</a>
+                    <form th:action="@{/avaliacao/excluir/{id}(id=${item.avaliacao.id})}" method="POST"
+                        style="display: inline;">
+                        <button type="submit"
+                            style="display: flex; align-items: center; justify-content: center; width: 100px; height: 36px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; padding: 0; box-sizing: border-box;"
+                            onclick="return confirm('Tem certeza que deseja excluir esta avaliação?')">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

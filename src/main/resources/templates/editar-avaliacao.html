@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::content})}">
+<div th:fragment="content">
+    <div class="hero">
+        <h2>Editar Avaliação</h2>
+        <p style="color: var(--text-muted);" th:text="'Para o filme: ' + ${filme.titulo}"></p>
+    </div>
+
+    <div class="form-container" style="max-width: 600px; margin: 0 auto;">
+        <form th:action="@{/avaliacao/editar/{id}(id=${avaliacao.id})}" method="POST">
+            <div class="form-group">
+                <label for="rating">Nota (1-5)</label>
+                <select id="rating" name="rating" required>
+                    <option value="5" th:selected="${avaliacao.nota == 5}">5 - Excelente</option>
+                    <option value="4" th:selected="${avaliacao.nota == 4}">4 - Muito Bom</option>
+                    <option value="3" th:selected="${avaliacao.nota == 3}">3 - Bom</option>
+                    <option value="2" th:selected="${avaliacao.nota == 2}">2 - Regular</option>
+                    <option value="1" th:selected="${avaliacao.nota == 1}">1 - Ruim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comentário</label>
+                <textarea id="comment" name="comment" rows="5" required th:text="${avaliacao.comentario}"></textarea>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <a th:href="@{/minhas-avaliacoes}" class="btn-primary"
+                    style="background-color: #666; text-decoration: none;">Cancelar</a>
+                <button type="submit" class="btn-primary">Atualizar Avaliação</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

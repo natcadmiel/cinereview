@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineReview - Banco de Filmes</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>CineReview</h1>
+        </div>
+        <nav>
+            <a th:href="@{/}">Início</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/meus-filmes}">Meus Filmes</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/minhas-avaliacoes}">Minhas Avaliações</a>
+            <span sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit"
+                        style="background:none; border:none; color: white; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: bold;">Sair</button>
+                </form>
+            </span>
+            <a sec:authorize="isAnonymous()" th:href="@{/login}">Entrar</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div th:replace="${content}"></div>
+    </div>
+</body>
+
+</html>

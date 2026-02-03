@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::content})}">
+<div th:fragment="content">
+    <div class="hero">
+        <h2>Avalie seus filmes favoritos</h2>
+        <form th:action="@{/}" method="POST" class="search-container">
+            <input type="text" id="query" name="query" required placeholder="Procure por um filme..."
+                th:value="${query}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(filmes)}" class="movies-section">
+        <h2 style="margin-left: 20px;">Resultados para "[[${query}]]"</h2>
+        <div class="movie-grid">
+            <div th:each="filme : ${filmes}">
+                <a th:href="@{/filme/{id}(id=${filme.id})}" class="movie-card">
+                    <div class="movie-card-body">
+                        <img th:if="${filme.imagem != null && !filme.imagem.isEmpty()}" th:src="${filme.imagem}"
+                            th:alt="${filme.titulo}"
+                            style="width: 100%; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+                        <h3 th:text="${filme.titulo}">Título</h3>
+                        <div class="movie-meta" th:text="${filme.ano}">Ano</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; border-top: 1px solid #333; padding-top: 30px;">
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Não achou o seu filme?</p>
+            <a th:href="@{/cadastrar}" class="btn-primary"
+                style="display: inline-block; width: auto; text-decoration: none;">Cadastre-o</a>
+        </div>
+    </div>
+    <div th:if="${#lists.isEmpty(filmes) && query != null}">
+        <p style="text-align: center; font-size: 1.2rem; color: var(--text-muted); margin-top: 40px;">Nenhum filme
+            encontrado para "[[${query}]]".</p>
+    </div>
+</div>
+
+</html>

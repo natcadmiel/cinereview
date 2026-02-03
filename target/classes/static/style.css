@@ -1,0 +1,431 @@
+:root {
+    --primary-color: #e50914;
+    --background-dark: #141414;
+    --background-card: #1f1f1f;
+    --text-main: #ffffff;
+    --text-muted: #b3b3b3;
+    --border-radius: 4px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    /* Updated font */
+    background-color: var(--background-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header h1,
+h1,
+h2,
+h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    /* Cinematic font for headers */
+    letter-spacing: 1px;
+}
+
+/* ... existing styles ... */
+
+.auth-container h1 {
+    color: var(--primary-color);
+    /* Popping color for title */
+    font-size: 3rem;
+    /* Larger title */
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.auth-container p {
+    color: #ccc;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.auth-container a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.auth-container a:hover {
+    color: #ff0f1f;
+    text-decoration: underline;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+header nav a:hover {
+    color: var(--text-muted);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+
+.form-container {
+    background-color: var(--background-card);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    margin: 0 auto 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+/* Standardized Form Elements */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 15px;
+    /* Consistent padding */
+    height: 48px;
+    /* Consistent fixed height */
+    background-color: #333;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Ensures padding doesn't affect width */
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+textarea {
+    height: auto;
+    /* Textareas should not be fixed height */
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #404040;
+}
+
+/* Standardized Buttons */
+button,
+.btn-primary,
+.btn-edit,
+.btn-delete {
+    padding: 0 24px;
+    /* Horizontal padding */
+    height: 48px;
+    /* Match input height */
+    line-height: 48px;
+    /* Vertically center text */
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Specific Button Colors */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    /* Full width by default for main actions */
+}
+
+button.btn-primary:hover {
+    background-color: #f40612;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+}
+
+.btn-edit,
+.btn-delete {
+    height: 36px;
+    /* Slightly smaller for inline actions */
+    line-height: 36px;
+    padding: 0 16px;
+    font-size: 0.9rem;
+    width: auto;
+    /* Auto width for inline buttons */
+}
+
+.btn-edit {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Auth Pages */
+.auth-body {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://w.wallhaven.cc/full/85/wallhaven-8589y7.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 60px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-container h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
+.auth-container p {
+    color: #737373;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* Movie List */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.movie-card {
+    background-color: var(--background-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.movie-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card-body {
+    padding: 20px;
+}
+
+.movie-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+}
+
+.movie-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Movie Details */
+.movie-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+.reviews-section {
+    margin-top: 40px;
+}
+
+.review-list {
+    margin-top: 20px;
+}
+
+.review-card {
+    background-color: var(--background-card);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.star-rating {
+    color: #ffd700;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.alert-success {
+    background-color: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+}
+
+.alert-info {
+    background-color: rgba(52, 152, 219, 0.2);
+    border: 1px solid #3498db;
+}
+
+.alert-danger {
+    background-color: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+}
+
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 40px;
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+
+.search-container {
+    width: 60%;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 50px;
+    display: flex;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-container input {
+    background: transparent;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    color: white;
+    flex-grow: 1;
+    outline: none;
+}
+
+.search-container button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s;
+    margin-left: 10px;
+}
+
+.search-container button:hover {
+    transform: scale(1.05);
+    background-color: #ff0f1f;
+}
+
+.movies-section h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    display: inline-block;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.movie-card img {
+    height: 400px !important;
+}
